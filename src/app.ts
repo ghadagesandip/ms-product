@@ -2,6 +2,7 @@ import express, { Application, Request, Response } from "express";
 import dotenv from "dotenv";
 import { json } from "body-parser";
 import helmet from "helmet";
+import cors from 'cors';
 
 import registerRoute from "./routes";
 
@@ -11,6 +12,7 @@ dotenv.config();
 // middlewares
 app.use(json());
 app.use(helmet());
+app.use(cors())
 
 // setup route
 registerRoute(app)
