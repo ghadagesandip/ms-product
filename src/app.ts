@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { json } from "body-parser";
 import helmet from "helmet";
 
+import registerRoute from "./routes";
 
 const app: Application = express();
 dotenv.config();
@@ -10,6 +11,9 @@ dotenv.config();
 // middlewares
 app.use(json());
 app.use(helmet());
+
+// setup route
+registerRoute(app)
 
 app.get('/', (req: Request, res:Response) => {
     res.send('Express + TypeScript Auth Server ');
