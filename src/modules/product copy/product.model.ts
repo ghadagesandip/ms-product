@@ -1,8 +1,8 @@
-import {IProduct} from './product.types';
+import mongoose from 'mongoose';
 
-import { Schema, Types, model } from 'mongoose';
+const { Schema } = mongoose;
 
-const productSchema = new Schema<IProduct>({
+const productSchema = new Schema({
     name: {
         type:String,
         required: true,
@@ -27,11 +27,10 @@ const productSchema = new Schema<IProduct>({
         type:String,
         required: true
     },
-    highlights: [{type: String, unique: true}],
-    category: { type: Schema.Types.ObjectId, ref:'Category'}
+    highlights: [{type: String, unique: true}]
     
 },{
     timestamps: true
 });
 
-export default model<IProduct>('Product', productSchema)
+export default mongoose.model('Product', productSchema)

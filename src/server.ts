@@ -1,5 +1,5 @@
 import http, { Server} from "http";
-import mongoose from "mongoose";
+import {connect} from "mongoose";
 
 import app from "./app";
 
@@ -11,7 +11,7 @@ server = http.createServer(app);
 const startServer = async () => {
 
     try{
-        mongoose.connect(mongoUrl);
+        connect(mongoUrl);
         console.log('Connected to mongodb');
        
     } catch(err){

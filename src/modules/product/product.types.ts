@@ -1,3 +1,4 @@
+import { Types } from "mongoose"
 export interface IProduct {
     name: string;
     description: string;
@@ -5,4 +6,6 @@ export interface IProduct {
     price:number;
     brand:string
     model_name:string;
+    highlights: string[],
+    category: Types.ObjectId
 }
