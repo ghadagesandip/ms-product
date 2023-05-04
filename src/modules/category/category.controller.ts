@@ -2,7 +2,9 @@ import BaseController from "../base.controller";
 import { Application, Request, Response } from "express";
 import { CategoryLib } from "./category.lib";
 import { ICategory } from "./category.types";
+import loggerFactory from "../../utils/logger";
 
+const logger = loggerFactory("server.ts");
 export default class CategoryController extends BaseController {
 	constructor(app: Application) {
 		super();
@@ -28,7 +30,7 @@ export default class CategoryController extends BaseController {
 			const category = await categoryLib.index(page - 1, limit);
 			res.send(category).status(200);
 		} catch (err) {
-			console.log("err", err);
+			logger.info("err", err);
 		}
 	}
 
@@ -39,7 +41,7 @@ export default class CategoryController extends BaseController {
 			const category = await categoryLib.add(productData);
 			res.send(category).status(200);
 		} catch (err) {
-			console.log("err", err);
+			logger.info("err", err);
 			res.send("Error while creating obj").status(500);
 		}
 	}

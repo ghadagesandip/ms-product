@@ -2,7 +2,7 @@ import categoryModel from "./category.model";
 import { ICategory } from "./category.types";
 
 export class CategoryLib {
-	public async index(page: number, limit: number): Promise<any> {
+	public async index(page: number, limit: number): Promise<ICategory[]> {
 		return categoryModel.find().limit(limit);
 	}
 

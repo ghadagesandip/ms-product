@@ -2,6 +2,9 @@ import BaseController from "../base.controller";
 import { Application, Request, Response } from "express";
 import { CartLib } from "./cart.lib";
 import { addCartValidation } from "./cart.middleware";
+import loggerFactory from "./../../utils/logger";
+
+const logger = loggerFactory("server.ts");
 
 export default class CartController extends BaseController {
 	constructor(app: Application) {
@@ -22,7 +25,7 @@ export default class CartController extends BaseController {
 			const category = await cartLib.index();
 			res.send(category).status(200);
 		} catch (err) {
-			console.log("err", err);
+			logger.error("err", err);
 		}
 	}
 
@@ -33,7 +36,7 @@ export default class CartController extends BaseController {
 			const cartItem = await cartLib.add(productData);
 			res.send(cartItem).status(200);
 		} catch (err) {
-			console.log("err", err);
+			logger.error("err", err);
 			res.send("Error while creating obj").status(500);
 		}
 	}

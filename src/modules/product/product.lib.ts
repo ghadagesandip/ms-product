@@ -2,7 +2,7 @@ import productModel from "./product.model";
 import { IProduct } from "./product.types";
 
 export class ProductLib {
-	public async index(page: number, limit: number): Promise<any> {
+	public async index(page: number, limit: number): Promise<IProduct[]> {
 		return productModel.find().limit(limit).populate("category", "name");
 	}
 

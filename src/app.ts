@@ -5,7 +5,9 @@ import helmet from "helmet";
 import cors from "cors";
 
 import registerRoute from "./routes";
+import loggerFactory from "./utils/logger";
 
+const logger = loggerFactory("server.ts");
 const app: Application = express();
 dotenv.config();
 
@@ -26,7 +28,7 @@ app.all("*", (req, resp) => {
 
 // error handler middleware
 app.use((err) => {
-	console.log("err occured", err);
+	logger.info("err occured", err);
 });
 
 const errorResponder = (
@@ -39,6 +41,7 @@ const errorResponder = (
 
 	const status = error.status || 400;
 	response.status(status).send(error.message);
+	next();
 };
 
 app.use(errorResponder);

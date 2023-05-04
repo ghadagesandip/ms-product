@@ -2,7 +2,7 @@ import cartModel from "./cart.model";
 import { ICart } from "./cart.types";
 
 export class CartLib {
-	public async index(): Promise<any> {
+	public async index(): Promise<ICart[]> {
 		return cartModel.find();
 	}
 

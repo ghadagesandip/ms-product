@@ -2,6 +2,9 @@ import BaseController from "./../base.controller";
 import { Application, Request, Response } from "express";
 import { ProductLib } from "./product.lib";
 import { IProduct } from "./product.types";
+import loggerFactory from "./../../utils/logger";
+
+const logger = loggerFactory("server.ts");
 
 export default class ProductController extends BaseController {
 	constructor(app: Application) {
@@ -20,17 +23,17 @@ export default class ProductController extends BaseController {
 
 	public async index(req: Request, res: Response): Promise<void> {
 		try {
-			console.log("list polices goes here", req.query);
+			logger.error("list polices goes here", req.query);
 			const page: number =
 				req.query && req.query.page ? parseInt(req.query.page as string) : 1;
 			const limit: number =
 				req.query && req.query.limit ? parseInt(req.query.limit as string) : 10;
-			console.log("page limit", page, limit);
+			logger.error("page limit", page, limit);
 			const productLib = new ProductLib();
 			const products = await productLib.index(page - 1, limit);
 			res.send(products).status(200);
 		} catch (err) {
-			console.log("err", err);
+			logger.error("err", err);
 		}
 	}
 
