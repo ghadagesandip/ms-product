@@ -1,11 +1,12 @@
-import { Types } from "mongoose"
+import { Types } from "mongoose";
 export interface IProduct {
-    name: string;
-    description: string;
-    image?:string;
-    price:number;
-    brand:string
-    model_name:string;
-    highlights: string[],
-    category: Types.ObjectId
+	_id?: string;
+	name: string;
+	description: string;
+	image?: string;
+	price: number;
+	brand: string;
+	model_name: string;
+	highlights: string[];
+	category: Types.ObjectId;
 }
